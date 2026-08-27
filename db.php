@@ -1,11 +1,12 @@
 <?php
-$host = 'sql300.infinityfree.com';
-$dbname = 'if0_42760649_taytay_training_db';
-$username = 'if0_42760649';
-$password = 'Cydneng09'; // Ang iyong hosting password
+$host = getenv('MYSQLHOST') ?: 'mysql.railway.internal';
+$port = getenv('MYSQLPORT') ?: '3306';
+$dbname = getenv('MYSQLDATABASE') ?: 'railway';
+$username = getenv('MYSQLUSER') ?: 'root';
+$password = getenv('MYSQLPASSWORD') ?: 'dbHvIVVCjjfZnWSCIARBtvCmHcQczpXE';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
